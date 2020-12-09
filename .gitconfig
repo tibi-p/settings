@@ -3,3 +3,13 @@
 	name = Tiberiu Popa
 [core]
 	editor = emacs
+[alias]
+	co = checkout
+	ci = commit
+	st = status -s
+	br = !git --no-pager branch
+	d = !git diff --name-status $(git merge-base --fork-point master)..HEAD
+	dd = !git diff $(git merge-base --fork-point master)..HEAD
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	tip = rev-parse HEAD
+	l = log HEAD --not master --no-merges
