@@ -27,6 +27,18 @@ alias awkl='awk '"'"'{print $NF}'"'"
 alias emod="emacs \`git st | grep -v '??' | awkl\`"
 alias ediff="emacs \`git diff --name-status master | awkl\`"
 
+# tmux windows set-up
+tm() {
+    declare -A _windows
+    _windows=()
+    cmd="/usr/bin/tmux new-session -s coding -c dev -n cmd"
+    for name file in "${(@kv)_windows}"; do
+        cmd="${cmd} \; new-window -c ${file} -n ${name}"
+    done
+    cmd="${cmd} \; selectw -t 1"
+    eval $cmd
+}
+
 # Access fzf project here: https://github.com/junegunn/fzf
 fzfb() {
     fzf --bind 'shift-down:preview-page-down,shift-up:preview-page-up' "$@"
