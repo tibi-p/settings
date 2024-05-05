@@ -5,9 +5,8 @@ prompt clint
 
 setopt histignorealldups sharehistory
 
-# Keep 5000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=5000
-SAVEHIST=10000
+HISTSIZE=10000
+SAVEHIST=50000
 HISTFILE=~/.zsh_history
 
 export CDPATH=".:${HOME}:${HOME}/dev"
@@ -27,11 +26,16 @@ alias awkl='awk '"'"'{print $NF}'"'"
 alias emod="emacs \`git st | grep -v '??' | awkl\`"
 alias ediff="emacs \`git diff --name-status master | awkl\`"
 
+alias gd="git diff ."
+alias gds="git diff --staged"
+
+alias todo="emacs --eval '(org-agenda-list)' --eval '(delete-other-windows)'"
+
 # tmux windows set-up
 tm() {
     declare -A _windows
     _windows=()
-    cmd="/usr/bin/tmux new-session -s coding -c dev -n cmd"
+    cmd="/usr/bin/tmux new-session -s terminal -c dev -n cmd"
     for name file in "${(@kv)_windows}"; do
         cmd="${cmd} \; new-window -c ${file} -n ${name}"
     done

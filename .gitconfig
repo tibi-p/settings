@@ -3,6 +3,7 @@
 	name = Tiberiu Popa
 [core]
 	editor = emacs
+	pager = "less --quit-if-one-screen"
 [alias]
 	co = checkout
 	ci = commit
